@@ -550,23 +550,23 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
         </div>
       </section>
 
-      {/* 5. MANAGED HOSTING & ONGOING CARE (£15/mo) */}
+      {/* 5. HOSTING & PEACE OF MIND CARE (£15/mo) */}
       <section className="py-20 md:py-28 bg-zinc-950 border-t border-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-widest text-purple-400 mb-3">
-              Infrastructure &amp; Care
+              After Launch Care
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-              Zero Hostage Fees. Real UK Edge Performance.
+              Simple, Reliable Hosting. Zero Lock-In.
             </h2>
             <p className="mt-4 text-zinc-300 text-base sm:text-lg leading-relaxed">
-              We host on next-generation edge architecture from just £15/mo with rolling 30-day flexibility. No expensive lock-in retainers.
+              We keep your site fast, secure, and running 24/7 for just £15/mo. Cancel or move anytime.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch max-w-5xl mx-auto">
-            {/* Card 1: Core Managed Cloud */}
+            {/* Card 1: Essential Hosting */}
             <div className="p-8 lg:p-9 rounded-3xl bg-zinc-900/50 border border-zinc-800 flex flex-col justify-between shadow-xl">
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -575,8 +575,8 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                       <Server className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-extrabold text-lg sm:text-xl text-white">Managed UK Cloud</h3>
-                      <p className="text-xs sm:text-sm text-zinc-400">Essential, rock-solid hosting</p>
+                      <h3 className="font-extrabold text-lg sm:text-xl text-white">UK Hosting &amp; Security</h3>
+                      <p className="text-xs sm:text-sm text-zinc-400">Everything you need to stay live</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -586,36 +586,36 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                 </div>
 
                 <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6">
-                  Runs your website on lightning-fast UK Edge CDN servers with automatic SSL updates, offsite backups, and DDoS mitigation.
+                  Keeps your website online, loading instantly on all phones and computers, with automatic security and backups handled for you.
                 </p>
 
                 <ul className="space-y-3.5 text-xs sm:text-sm text-zinc-200">
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Ultra-fast UK Edge CDN hosting (sub-second TTFB)</span>
+                    <span>Instant loading so customers don't leave before calling</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Automated SSL certificate renewal &amp; HTTP/3 protocol</span>
+                    <span>Free SSL padlock certificate (Google-trusted &amp; secure)</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Weekly automated offsite cloud snapshot backups</span>
+                    <span>Automated weekly backups so your website is never lost</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Direct email &amp; WhatsApp support for emergency queries</span>
+                    <span>Direct phone, WhatsApp &amp; email support with Jordan &amp; Josh</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Zero lock-in contract • Cancel or migrate anytime</span>
+                    <span>Zero contract tie-in • Cancel or switch hosts anytime</span>
                   </li>
                 </ul>
               </div>
 
               <div className="mt-8 pt-6 border-t border-zinc-800">
                 <span className="text-xs sm:text-sm font-semibold text-zinc-400 block">
-                  Included with every website build on launch.
+                  Included ready-to-go on launch day.
                 </span>
               </div>
             </div>
@@ -629,8 +629,8 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                       <TrendingUp className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="font-extrabold text-lg sm:text-xl text-white">Local Growth &amp; SEO Retainer</h3>
-                      <p className="text-xs sm:text-sm text-purple-300">For ongoing regional dominance</p>
+                      <h3 className="font-extrabold text-lg sm:text-xl text-white">Google &amp; Local Growth Care</h3>
+                      <p className="text-xs sm:text-sm text-purple-300">Done-for-you monthly updates</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -640,36 +640,36 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                 </div>
 
                 <p className="text-sm sm:text-base text-zinc-300 leading-relaxed mb-6">
-                  For businesses wanting proactive Google Maps 3-pack citation updates, monthly project photos/reviews, and fresh local ranking pages.
+                  For owners who want new customer reviews added, fresh work photos posted, and continuous help getting found on Google Maps.
                 </p>
 
                 <ul className="space-y-3.5 text-xs sm:text-sm text-zinc-200">
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Everything in Managed UK Cloud (£15/mo tier included)</span>
+                    <span>Includes everything in the £15/mo hosting tier</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Monthly Google Maps &amp; local business citation updates</span>
+                    <span>We add your new photos, project galleries and client reviews</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>New project gallery updates &amp; review uploads added for you</span>
+                    <span>Monthly Google Business Profile &amp; Maps listing checkups</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Priority developer turnaround for copy or price adjustments</span>
+                    <span>Fast priority updates whenever your prices or services change</span>
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check className="w-4 h-4 text-purple-400 shrink-0" />
-                    <span>Monthly transparent Google Search Console ranking review</span>
+                    <span>Clear monthly summary showing how many people found you</span>
                   </li>
                 </ul>
               </div>
 
               <div className="mt-8 pt-6 border-t border-purple-900/40">
                 <span className="text-xs sm:text-sm font-semibold text-purple-300 block">
-                  Optional add-on available after your website launch.
+                  Optional upgrade anytime — only if you want ongoing help.
                 </span>
               </div>
             </div>
