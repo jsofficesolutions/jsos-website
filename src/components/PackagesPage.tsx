@@ -28,6 +28,12 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
   onNavigateHome,
 }) => {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [expandedFeatures, setExpandedFeatures] = useState<Record<string, boolean>>({});
+  const [showFullMatrix, setShowFullMatrix] = useState<boolean>(false);
+
+  const toggleFeatures = (id: string) => {
+    setExpandedFeatures((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const tiers = [
     {
@@ -38,14 +44,16 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
       turnaround: '5–7 Days Turnaround',
       idealFor: 'Solo trades, startups & local specialists',
       oneSentence:
-        'A sleek, high-converting single-page website hand-coded for 100/100 Google PageSpeed scores, sub-second loads, and rapid turnaround.',
+        'A sleek, high-converting single-page website hand-coded for 100/100 PageSpeed scores and sub-second loads.',
       popular: false,
       ctaText: 'Choose Single-Page (£499)',
-      features: [
+      coreFeatures: [
         'Single high-conversion focused page structure',
         'Sub-second Google PageSpeed guarantee (90+)',
         '100% mobile-first bespoke responsive layout',
         'Persuasive, conversion-focused copywriting included',
+      ],
+      extraFeatures: [
         'Direct WhatsApp click-to-chat & instant phone triggers',
         'Instant enquiry form with direct email alerts',
         'Foundational local SEO & Google Business metadata',
@@ -55,22 +63,24 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
     {
       id: 'tier-02',
       badge: 'Tier 02',
-      highlightTag: 'Most Popular for Local Growth',
+      highlightTag: 'Most Popular',
       name: 'Multi-Page Business Suite',
       price: '£799',
       turnaround: '7–12 Days Turnaround',
       idealFor: 'Established local businesses & regional contractors',
       oneSentence:
-        'Up to 5–6 custom pages with dedicated service breakdowns, regional service areas, and optional online payments, deposits, or bookings.',
+        'Up to 5–6 custom pages with dedicated service breakdowns, regional service areas, and online booking / payments.',
       popular: true,
       ctaText: 'Choose Multi-Page (£799)',
-      features: [
+      coreFeatures: [
         'Up to 5–6 custom designed & hand-coded pages',
         'Dedicated landing pages for each core service',
-        'Areas covered / regional Essex & London breakdown',
-        'Sub-second Google PageSpeed guarantee (90+)',
-        'Online deposits, card payments or booking engine (Stripe / Calendly)',
+        'Online deposits, card payments or booking engine',
         'Rich Local Business Schema markup for Google Maps',
+      ],
+      extraFeatures: [
+        'Sub-second Google PageSpeed guarantee (90+)',
+        'Areas covered / regional Essex & London breakdown',
         'Project portfolio, client reviews & case study showcases',
         'Custom intuitive CMS + 1-on-1 video walkthrough',
         'Direct 1-on-1 developer access with Jordan & Josh',
@@ -84,18 +94,20 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
       turnaround: '10–18 Days Turnaround',
       idealFor: 'High-volume firms, e-commerce & bespoke operations',
       oneSentence:
-        'Engineered for larger architectures (8+ pages), interactive quote tools, customer booking portals, full product catalogs, and bespoke workflows.',
+        'Engineered for larger architectures (8+ pages), interactive quote tools, customer booking portals, and bespoke workflows.',
       popular: false,
       ctaText: 'Choose Custom Suite (£1,199)',
-      features: [
+      coreFeatures: [
         '8+ custom pages with advanced architectural hierarchy',
-        'Interactive step-by-step quote estimator / pricing tool',
+        'Interactive step-by-step quote estimator or pricing tool',
         'Full e-commerce catalog or client login / booking portal',
-        'Automated CRM webhook integration & email notification workflows',
+        'Automated CRM webhook integration & email notifications',
+      ],
+      extraFeatures: [
         'Priority developer turnaround with weekly milestone reviews',
         'Advanced technical SEO suite with multi-location targeting',
         '100/100 Core Web Vitals optimization on edge servers',
-        'Custom admin dashboard for live content & catalogue management',
+        'Custom admin dashboard for live content management',
       ],
     },
   ];
@@ -268,19 +280,46 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                     {tier.oneSentence}
                   </p>
 
-                  {/* Feature Checklist */}
-                  <div className="space-y-3.5 mb-8">
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 block mb-3">
-                      Everything included:
+                  {/* Feature Checklist - Clean 4 core items + expandable toggle */}
+                  <div className="space-y-3 mb-6">
+                    <span className="text-xs font-bold uppercase tracking-wider text-zinc-300 block mb-2">
+                      Key deliverables:
                     </span>
-                    {tier.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-3 text-sm text-zinc-200">
+                    {tier.coreFeatures.map((feat, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-sm text-zinc-200">
                         <div className="w-4 h-4 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-3 h-3 text-purple-400" />
                         </div>
                         <span className="leading-snug">{feat}</span>
                       </div>
                     ))}
+
+                    {/* Expandable Extra Features */}
+                    {expandedFeatures[tier.id] && (
+                      <div className="pt-2 space-y-3 border-t border-zinc-800/60 mt-3 animate-fadeIn">
+                        {tier.extraFeatures.map((feat, idx) => (
+                          <div key={idx} className="flex items-start gap-2.5 text-sm text-zinc-300">
+                            <div className="w-4 h-4 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-3 h-3 text-purple-400" />
+                            </div>
+                            <span className="leading-snug">{feat}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={() => toggleFeatures(tier.id)}
+                      className="mt-3 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1 cursor-pointer pt-1"
+                    >
+                      <span>{expandedFeatures[tier.id] ? 'Show fewer details' : `+ ${tier.extraFeatures.length} more inclusions`}</span>
+                      {expandedFeatures[tier.id] ? (
+                        <ChevronUp className="w-3.5 h-3.5" />
+                      ) : (
+                        <ChevronDown className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </div>
                 </div>
 
@@ -311,10 +350,10 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
         </div>
       </section>
 
-      {/* 3. FULL COMPARISON MATRIX (Integrated smoothly inline) */}
-      <section className="py-20 md:py-28 bg-zinc-950 border-t border-zinc-900">
+      {/* 3. FULL COMPARISON MATRIX (Available on demand) */}
+      <section className="py-16 md:py-24 bg-zinc-950 border-t border-zinc-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-8">
             <p className="text-xs font-bold uppercase tracking-widest text-purple-400 mb-3">
               Side-by-Side Comparison
             </p>
@@ -322,11 +361,26 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
               Compare deliverables at a glance
             </h2>
             <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed">
-              A transparent breakdown of every technical detail across our three tiers.
+              Every package is fixed-price. Need to inspect the exact line-by-line technical matrix?
             </p>
+            <div className="mt-6 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowFullMatrix(!showFullMatrix)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:border-purple-500/60 text-zinc-200 hover:text-white font-semibold text-xs tracking-wider uppercase transition-all cursor-pointer shadow-md"
+              >
+                <span>{showFullMatrix ? 'Hide technical comparison table' : 'View full technical comparison table'}</span>
+                {showFullMatrix ? (
+                  <ChevronUp className="w-4 h-4 text-purple-400" />
+                ) : (
+                  <ChevronDown className="w-4 h-4 text-purple-400" />
+                )}
+              </button>
+            </div>
           </div>
 
-          <div className="overflow-x-auto rounded-3xl border border-zinc-800/80 bg-zinc-900/40 p-2 shadow-2xl">
+          {showFullMatrix && (
+            <div className="overflow-x-auto rounded-3xl border border-zinc-800/80 bg-zinc-900/40 p-2 shadow-2xl animate-fadeIn">
             <table className="w-full text-left text-sm sm:text-base border-collapse">
               <thead>
                 <tr className="border-b border-zinc-800 text-zinc-300 uppercase text-xs font-bold tracking-wider">
@@ -396,6 +450,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
               </tbody>
             </table>
           </div>
+          )}
         </div>
       </section>
 
