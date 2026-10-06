@@ -112,36 +112,44 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
     },
   ];
 
-  const modularAddons = [
+  const addonCategories = [
     {
-      name: 'Interactive Quote Calculator',
-      price: '+£199',
-      desc: 'Interactive step-by-step price estimator directly on your website to qualify leads before they call.',
+      title: 'Essential Enhancements',
+      flatPrice: '+£99 each',
+      badge: 'Quick Add-On',
+      items: [
+        {
+          name: 'Direct WhatsApp API & SMS Routing',
+          desc: 'Instant lead alerts pushed to your mobile so you can respond in under 2 minutes.',
+        },
+        {
+          name: 'Multi-Location SEO Target Pages',
+          desc: 'Targeted ranking landing pages for surrounding regional towns and service areas.',
+        },
+        {
+          name: 'Google Analytics & Heatmap Setup',
+          desc: 'Full GDPR-compliant visitor tracking and click heatmaps to monitor conversion behavior.',
+        },
+      ],
     },
     {
-      name: 'Multi-Location SEO Landing Pages',
-      price: '+£249',
-      desc: 'Targeted service pages for neighbouring towns (e.g. Chelmsford, Romford, Brentwood, Southend).',
-    },
-    {
-      name: 'Direct WhatsApp API & SMS Routing',
-      price: '+£99',
-      desc: 'Instant lead notifications routed straight to your mobile so you can respond in under 2 minutes.',
-    },
-    {
-      name: 'Custom Client Portal / Booking Engine',
-      price: '+£349',
-      desc: 'Secure client area with document upload, deposit booking, and calendar scheduling.',
-    },
-    {
-      name: 'E-Commerce / Stripe Store Add-on',
-      price: '+£299',
-      desc: 'Secure product catalog, Apple Pay & Google Pay express checkout, and order receipt dispatch.',
-    },
-    {
-      name: 'Video Walkthrough & CMS Onboarding',
-      price: 'Included Free',
-      desc: 'Personalised 10-minute screencast showing you how to update photos, copy, and testimonials anytime.',
+      title: 'Advanced Interactive Systems',
+      flatPrice: '+£199 each',
+      badge: 'Interactive Power',
+      items: [
+        {
+          name: 'Interactive Quote Estimator',
+          desc: 'Self-serve price calculator directly on your site to pre-qualify and filter enquiries.',
+        },
+        {
+          name: 'Online Deposits & Booking Engine',
+          desc: 'Secure calendar scheduling with card deposits or full payments via Stripe / Apple Pay.',
+        },
+        {
+          name: 'Client Portal or Store Catalogue',
+          desc: 'Secure customer area with file uploads, order accounts, or bespoke catalog flows.',
+        },
+      ],
     },
   ];
 
@@ -466,36 +474,78 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {modularAddons.map((addon, idx) => (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            {addonCategories.map((cat, idx) => (
               <div
                 key={idx}
-                className="p-7 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-all flex flex-col justify-between group shadow-lg"
+                className="p-8 sm:p-9 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-zinc-700 transition-all flex flex-col justify-between shadow-xl"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-bold text-white text-base sm:text-lg group-hover:text-purple-300 transition-colors">
-                      {addon.name}
-                    </h3>
-                    <span className="text-xs sm:text-sm font-extrabold text-purple-300 bg-purple-950/80 px-3 py-1 rounded-full border border-purple-800/80 shrink-0">
-                      {addon.price}
+                  <div className="flex items-center justify-between mb-4 pb-4 border-b border-zinc-800/80">
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-purple-400 block mb-1">
+                        {cat.badge}
+                      </span>
+                      <h3 className="font-extrabold text-white text-xl sm:text-2xl">
+                        {cat.title}
+                      </h3>
+                    </div>
+                    <span className="text-base sm:text-lg font-black text-purple-300 bg-purple-950/80 px-4 py-1.5 rounded-full border border-purple-800/80 shrink-0">
+                      {cat.flatPrice}
                     </span>
                   </div>
-                  <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6">
-                    {addon.desc}
-                  </p>
+
+                  <div className="space-y-4 my-6">
+                    {cat.items.map((item, itemIdx) => (
+                      <div
+                        key={itemIdx}
+                        className="p-4 rounded-2xl bg-zinc-950/60 border border-zinc-850 hover:border-zinc-700/80 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                      >
+                        <div>
+                          <h4 className="font-bold text-white text-sm sm:text-base mb-0.5">
+                            {item.name}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                            {item.desc}
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => onSelectTierAndQuote(`Tier with ${item.name}`)}
+                          className="shrink-0 text-xs font-semibold text-purple-400 hover:text-purple-300 self-start sm:self-center transition-colors cursor-pointer"
+                        >
+                          + Add to quote
+                        </button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400 font-medium">
-                  <span>Available on any tier</span>
-                  <button
-                    onClick={() => onSelectTierAndQuote(`Tier with ${addon.name}`)}
-                    className="text-purple-400 hover:text-purple-300 font-semibold cursor-pointer group-hover:translate-x-0.5 transition-transform"
-                  >
-                    Select in quote &rarr;
-                  </button>
+
+                <div className="pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs text-zinc-400 font-medium">
+                  <span>Available on any package build</span>
+                  <span className="text-zinc-300">Simple flat fixed rate</span>
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Included free CMS highlight banner */}
+          <div className="mt-8 p-6 rounded-2xl bg-zinc-900/40 border border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                <Check className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-white text-sm sm:text-base">
+                  Video Walkthrough &amp; CMS Training — Always Included Free
+                </h4>
+                <p className="text-xs sm:text-sm text-zinc-300">
+                  Every project includes a personalised 10-minute screencast showing you how to update photos, copy, and testimonials anytime.
+                </p>
+              </div>
+            </div>
+            <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-3.5 py-1.5 rounded-full border border-emerald-800/60 shrink-0">
+              £0 Free
+            </span>
           </div>
         </div>
       </section>
