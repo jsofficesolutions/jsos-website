@@ -344,113 +344,98 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
             ))}
           </div>
 
-          <p className="mt-12 text-center text-sm text-zinc-400 font-medium">
+          {/* Action button & technical comparison table right below package cards */}
+          <div className="mt-12 flex flex-col items-center">
+            <button
+              type="button"
+              onClick={() => setShowFullMatrix(!showFullMatrix)}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:border-purple-500/60 text-zinc-200 hover:text-white font-semibold text-xs tracking-wider uppercase transition-all cursor-pointer shadow-md"
+            >
+              <span>{showFullMatrix ? 'Hide technical comparison table' : 'View full technical comparison table'}</span>
+              {showFullMatrix ? (
+                <ChevronUp className="w-4 h-4 text-purple-400" />
+              ) : (
+                <ChevronDown className="w-4 h-4 text-purple-400" />
+              )}
+            </button>
+
+            {showFullMatrix && (
+              <div className="w-full mt-10 overflow-x-auto rounded-3xl border border-zinc-800/80 bg-zinc-900/40 p-2 shadow-2xl animate-fadeIn">
+                <table className="w-full text-left text-sm sm:text-base border-collapse">
+                  <thead>
+                    <tr className="border-b border-zinc-800 text-zinc-300 uppercase text-xs font-bold tracking-wider">
+                      <th className="py-4 px-5 font-semibold">Deliverable</th>
+                      <th className="py-4 px-5 text-center font-semibold">Single-Page (£499)</th>
+                      <th className="py-4 px-5 text-center font-semibold text-purple-300 bg-purple-950/40 rounded-t-2xl">
+                        Multi-Page (£799)
+                      </th>
+                      <th className="py-4 px-5 text-center font-semibold">Custom Suite (£1,199)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-800/60 text-zinc-200">
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Sub-Second Load Guarantee (90+ PageSpeed)</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Page Architecture Scope</td>
+                      <td className="py-4 px-5 text-center text-zinc-300">1 Focused Page</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">Up to 6 Custom Pages</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-semibold">8+ Custom Pages</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Target Turnaround Time</td>
+                      <td className="py-4 px-5 text-center text-zinc-300">5–7 Working Days</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">7–12 Working Days</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-semibold">10–18 Working Days</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Custom Copywriting Written For You</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Online Deposits &amp; Booking Scheduling</td>
+                      <td className="py-4 px-5 text-center text-zinc-600">—</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ (Stripe/PayPal/Calendly)</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ (Custom Portal / Store)</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Areas Covered / Regional SEO Breakdown</td>
+                      <td className="py-4 px-5 text-center text-zinc-600">—</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Dedicated Section</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Multi-town Hub Pages</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Technical On-Page SEO &amp; Schema Setup</td>
+                      <td className="py-4 px-5 text-center text-zinc-300">Foundational</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">Local Business Schema</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-semibold">Advanced Entity Architecture</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Direct WhatsApp Click-to-Chat</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
+                    </tr>
+                    <tr className="hover:bg-zinc-900/60 transition-colors">
+                      <td className="py-4 px-5 font-medium text-white">Full Source Code &amp; Domain Ownership</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">100% Yours</td>
+                      <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20 rounded-b-2xl">100% Yours</td>
+                      <td className="py-4 px-5 text-center text-purple-400 font-bold">100% Yours</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          <p className="mt-8 text-center text-sm text-zinc-400 font-medium">
             All packages include launch deployment. Ongoing managed UK cloud hosting from <span className="text-zinc-200 font-semibold">£15/mo</span> with zero lock-in.
           </p>
-        </div>
-      </section>
-
-      {/* 3. FULL COMPARISON MATRIX (Available on demand) */}
-      <section className="py-16 md:py-24 bg-zinc-950 border-t border-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-8">
-            <p className="text-xs font-bold uppercase tracking-widest text-purple-400 mb-3">
-              Side-by-Side Comparison
-            </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight">
-              Compare deliverables at a glance
-            </h2>
-            <p className="mt-4 text-zinc-400 text-sm sm:text-base leading-relaxed">
-              Every package is fixed-price. Need to inspect the exact line-by-line technical matrix?
-            </p>
-            <div className="mt-6 flex justify-center">
-              <button
-                type="button"
-                onClick={() => setShowFullMatrix(!showFullMatrix)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 border border-zinc-800 hover:border-purple-500/60 text-zinc-200 hover:text-white font-semibold text-xs tracking-wider uppercase transition-all cursor-pointer shadow-md"
-              >
-                <span>{showFullMatrix ? 'Hide technical comparison table' : 'View full technical comparison table'}</span>
-                {showFullMatrix ? (
-                  <ChevronUp className="w-4 h-4 text-purple-400" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-purple-400" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          {showFullMatrix && (
-            <div className="overflow-x-auto rounded-3xl border border-zinc-800/80 bg-zinc-900/40 p-2 shadow-2xl animate-fadeIn">
-            <table className="w-full text-left text-sm sm:text-base border-collapse">
-              <thead>
-                <tr className="border-b border-zinc-800 text-zinc-300 uppercase text-xs font-bold tracking-wider">
-                  <th className="py-4 px-5 font-semibold">Deliverable</th>
-                  <th className="py-4 px-5 text-center font-semibold">Single-Page (£499)</th>
-                  <th className="py-4 px-5 text-center font-semibold text-purple-300 bg-purple-950/40 rounded-t-2xl">
-                    Multi-Page (£799)
-                  </th>
-                  <th className="py-4 px-5 text-center font-semibold">Custom Suite (£1,199)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-zinc-800/60 text-zinc-200">
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Sub-Second Load Guarantee (90+ PageSpeed)</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Page Architecture Scope</td>
-                  <td className="py-4 px-5 text-center text-zinc-300">1 Focused Page</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">Up to 6 Custom Pages</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-semibold">8+ Custom Pages</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Target Turnaround Time</td>
-                  <td className="py-4 px-5 text-center text-zinc-300">5–7 Working Days</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">7–12 Working Days</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-semibold">10–18 Working Days</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Custom Copywriting Written For You</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Online Deposits &amp; Booking Scheduling</td>
-                  <td className="py-4 px-5 text-center text-zinc-600">—</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ (Stripe/PayPal/Calendly)</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ (Custom Portal / Store)</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Areas Covered / Regional SEO Breakdown</td>
-                  <td className="py-4 px-5 text-center text-zinc-600">—</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Dedicated Section</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Multi-town Hub Pages</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Technical On-Page SEO &amp; Schema Setup</td>
-                  <td className="py-4 px-5 text-center text-zinc-300">Foundational</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-semibold bg-purple-950/20">Local Business Schema</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-semibold">Advanced Entity Architecture</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Direct WhatsApp Click-to-Chat</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">✓ Included</td>
-                </tr>
-                <tr className="hover:bg-zinc-900/60 transition-colors">
-                  <td className="py-4 px-5 font-medium text-white">Full Source Code &amp; Domain Ownership</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">100% Yours</td>
-                  <td className="py-4 px-5 text-center text-purple-300 font-bold bg-purple-950/20 rounded-b-2xl">100% Yours</td>
-                  <td className="py-4 px-5 text-center text-purple-400 font-bold">100% Yours</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          )}
         </div>
       </section>
 
