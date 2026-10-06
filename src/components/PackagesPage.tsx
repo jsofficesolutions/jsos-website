@@ -634,7 +634,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-3xl font-black text-white">£79</span>
+                    <span className="text-3xl font-black text-white">£99</span>
                     <span className="text-xs sm:text-sm text-purple-300">/mo</span>
                   </div>
                 </div>

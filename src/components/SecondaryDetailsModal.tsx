@@ -38,7 +38,7 @@ export const SecondaryDetailsModal: React.FC<SecondaryDetailsModalProps> = ({
     },
     {
       q: 'Are there any hidden monthly hosting or license fees?',
-      a: 'Zero hidden fees. We host and maintain every site on our ultra-fast UK Edge cloud network for £15/month on a rolling basis with no lock-in contracts. For businesses wanting proactive ongoing local SEO, Google Maps citation updates, and regular content additions, we offer optional growth retainers from £79/month.',
+      a: 'Zero hidden fees. We host and maintain every site on our ultra-fast UK Edge cloud network for £15/month on a rolling basis with no lock-in contracts. For businesses wanting proactive ongoing local SEO, Google Maps citation updates, and regular content additions, we offer optional growth retainers from £99/month.',
     },
     {
       q: 'How does payment work?',
@@ -351,7 +351,7 @@ export const SecondaryDetailsModal: React.FC<SecondaryDetailsModalProps> = ({
                         Local Growth &amp; SEO Retainer
                       </span>
                       <span className="text-xs font-black text-purple-200 bg-purple-900/70 px-3 py-1 rounded-full border border-purple-700/60">
-                        From £79/month
+                        From £99/month
                       </span>
                     </div>
                     <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed mb-4">
