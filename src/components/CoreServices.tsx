@@ -29,7 +29,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({ onSelectTier }) => {
       tierName: 'Tier 01: Single-Page Launchpad (£499)',
       icon: Layout,
       pill: (
-        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-zinc-850 text-zinc-300 border border-zinc-700/80 shrink-0">
+        <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-zinc-800 text-zinc-300 border border-zinc-700/80 shrink-0">
           From £499
         </span>
       ),

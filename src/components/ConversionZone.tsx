@@ -256,6 +256,17 @@ export const ConversionZone: React.FC<ConversionZoneProps> = ({
                         onChange={handleChange}
                         className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-base text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                       >
+                        {formData.serviceTier &&
+                          ![
+                            'Tier 01: Single-Page Launchpad (£499)',
+                            'Tier 02: Multi-Page Business Suite (£799)',
+                            'Tier 03: Custom Systems & Scale (£1,199)',
+                            'Custom / Other Requirement',
+                          ].includes(formData.serviceTier) && (
+                            <option value={formData.serviceTier}>
+                              {formData.serviceTier}
+                            </option>
+                          )}
                         <option value="Tier 01: Single-Page Launchpad (£499)">Tier 01: Single-Page Launchpad (£499)</option>
                         <option value="Tier 02: Multi-Page Business Suite (£799)">Tier 02: Multi-Page Business Suite (£799)</option>
                         <option value="Tier 03: Custom Systems & Scale (£1,199)">Tier 03: Custom Systems &amp; Scale (£1,199)</option>
