@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import { X, Calendar, Clock, CheckCircle, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, CheckCircle, ArrowRight } from 'lucide-react';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
   prefillTier?: string;
+  initialPackage?: string;
 }
 
-const AVAILABLE_DAYS = [
-  { day: 'Tomorrow', date: 'Wednesday', fullDate: 'Tomorrow at 10:00 AM' },
-  { day: 'Thursday', date: 'Oct 1', fullDate: 'Thursday, Oct 1' },
-  { day: 'Friday', date: 'Oct 2', fullDate: 'Friday, Oct 2' },
-  { day: 'Monday', date: 'Oct 5', fullDate: 'Monday, Oct 5' },
-  { day: 'Tuesday', date: 'Oct 6', fullDate: 'Tuesday, Oct 6' },
-];
-
-const AVAILABLE_TIMES = [
-  '09:30 AM',
-  '11:00 AM',
-  '01:30 PM',
-  '03:00 PM',
-  '04:30 PM',
+const CALLBACK_TIMES = [
+  'Morning (09:00 - 12:00)',
+  'Afternoon (12:00 - 15:00)',
+  'Late Afternoon (15:00 - 17:30)',
+  'Evening (17:30 - 19:30)',
+  'Anytime ASAP',
 ];
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   isOpen,
   onClose,
   prefillTier,
+  initialPackage,
 }) => {
-  const [selectedDay, setSelectedDay] = useState(AVAILABLE_DAYS[0].day);
-  const [selectedTime, setSelectedTime] = useState(AVAILABLE_TIMES[1]);
+  const defaultPackage = initialPackage || prefillTier || 'Multi-Page (£799)';
+  const [selectedCallbackTime, setSelectedCallbackTime] = useState(CALLBACK_TIMES[4]);
   const [name, setName] = useState('');
   const [business, setBusiness] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [notes, setNotes] = useState(prefillTier ? `Interested in ${prefillTier}` : '');
+  const [packageNeeded, setPackageNeeded] = useState(defaultPackage);
   const [isBooked, setIsBooked] = useState(false);
+
+  useEffect(() => {
+    if (initialPackage || prefillTier) {
+      setPackageNeeded(initialPackage || prefillTier || 'Multi-Page (£799)');
+    }
+  }, [initialPackage, prefillTier]);
 
   if (!isOpen) return null;
 
@@ -45,168 +45,166 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div
-        className="bg-zinc-900 rounded-3xl max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-zinc-800 relative text-white"
+        className="bg-[#0a0a0a] rounded-none max-w-xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/15 relative text-white"
         role="dialog"
         aria-modal="true"
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors z-10 cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-none text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors z-10 cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Top Header */}
-        <div className="p-6 sm:p-8 bg-zinc-950 text-white rounded-t-3xl border-b border-zinc-800">
-          <span className="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-950/80 border border-purple-800/80 px-2.5 py-1 rounded inline-block mb-3">
-            Free 15-Min Digital Audit
-          </span>
-          <h3 className="text-2xl font-black text-white">
-            Schedule an Audit with Jordan &amp; Josh
+        <div className="p-6 sm:p-8 bg-black text-white border-b border-white/15">
+          <div className="flex items-center justify-between mb-4">
+            <img
+              src="/images/logo.svg"
+              alt="JS Solutions"
+              className="h-10 sm:h-12 w-auto max-w-[200px] object-contain"
+            />
+            <span className="text-xs font-bold uppercase tracking-wider text-purple-400 bg-[#1e1b4b] border border-purple-500/40 px-2.5 py-1 rounded-none inline-block">
+              Fast 2-Hour Response
+            </span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            Get Your Fixed-Price Quote
           </h3>
-          <p className="text-zinc-400 text-xs sm:text-sm mt-1">
-            Review your current website speed, Google ranking, and conversion opportunities with your UK developer.
+          <p className="text-zinc-300 text-xs sm:text-sm mt-2 leading-relaxed">
+            Deal directly with Jordan &amp; Josh. Tell us your trade and what you need—we’ll call or WhatsApp you back within 2 hours with a straight answer and a fixed price.
           </p>
         </div>
 
         {isBooked ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
+            <div className="w-16 h-16 rounded-none bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto">
               <CheckCircle className="w-8 h-8" />
             </div>
-            <h4 className="text-2xl font-black text-white">Audit Call Confirmed!</h4>
-            <p className="text-zinc-300 text-sm max-w-md mx-auto">
-              We&apos;ve reserved <b>{selectedDay} at {selectedTime}</b> for <b>{name}</b>. A calendar invitation and video link have been sent to <b>{email}</b>.
+            <h4 className="text-2xl font-bold text-white">Quote Request Received!</h4>
+            <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
+              Thanks <b>{name}</b>. Jordan or Josh will review your details for <b>{business || 'your business'}</b> and get back to you on <b>{phone}</b> within 2 hours.
             </p>
             <div className="pt-4">
               <button
                 onClick={onClose}
-                className="px-6 py-3 rounded-full bg-purple-700 hover:bg-purple-600 text-white text-xs font-bold uppercase tracking-wider cursor-pointer shadow-md"
+                className="px-8 py-3.5 rounded-none bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold uppercase tracking-wider cursor-pointer shadow-md"
               >
                 Done
               </button>
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-6">
-            {/* Step 1: Select Day & Time */}
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
-                1. Select Preferred Day
-              </label>
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                {AVAILABLE_DAYS.map((d) => (
-                  <button
-                    key={d.day}
-                    type="button"
-                    onClick={() => setSelectedDay(d.day)}
-                    className={`py-2 px-2.5 rounded-xl border text-center transition-all cursor-pointer ${
-                      selectedDay === d.day
-                        ? 'border-purple-500 bg-purple-950/80 text-purple-300 font-bold shadow-xs'
-                        : 'border-zinc-800 hover:border-zinc-700 text-zinc-400 bg-zinc-950/60'
-                    }`}
-                  >
-                    <span className="block text-xs font-bold">{d.day}</span>
-                    <span className="text-[10px] text-zinc-500">{d.date}</span>
-                  </button>
-                ))}
+          <form onSubmit={handleSubmit} className="p-6 sm:p-8 space-y-5">
+            {/* Contact Details */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. John Smith"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-black border border-white/20 rounded-none px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+                />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
-                2. Select Time (UK London Time)
-              </label>
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                {AVAILABLE_TIMES.map((time) => (
-                  <button
-                    key={time}
-                    type="button"
-                    onClick={() => setSelectedTime(time)}
-                    className={`py-2 px-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer ${
-                      selectedTime === time
-                        ? 'border-purple-500 bg-purple-700 text-white shadow-xs'
-                        : 'border-zinc-800 hover:border-zinc-700 text-zinc-400 bg-zinc-950/60'
-                    }`}
-                  >
-                    {time}
-                  </button>
-                ))}
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  Mobile Number (For Call / WhatsApp) *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="e.g. 07983 145311"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full bg-black border border-white/20 rounded-none px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+                />
               </div>
-            </div>
-
-            {/* Step 2: Contact Details */}
-            <div className="space-y-4 pt-2 border-t border-zinc-800">
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400">
-                3. Your Contact Details
-              </label>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                    Trade or Business Name *
+                  </label>
                   <input
                     type="text"
                     required
-                    placeholder="Your Name *"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Business Name"
+                    placeholder="e.g. Apex Electrical Services"
                     value={business}
                     onChange={(e) => setBusiness(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-black border border-white/20 rounded-none px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
                   />
                 </div>
+
                 <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                    Email Address
+                  </label>
                   <input
                     type="email"
-                    required
-                    placeholder="Email Address *"
+                    placeholder="e.g. john@example.co.uk"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500"
-                  />
-                </div>
-                <div>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Phone Number *"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500"
+                    className="w-full bg-black border border-white/20 rounded-none px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <textarea
-                  rows={2}
-                  placeholder="Website URL or specific goals for the audit..."
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 resize-none"
-                ></textarea>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  Selected Package / What You Need
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Multi-Page (£799) or describe what you need"
+                  value={packageNeeded}
+                  onChange={(e) => setPackageNeeded(e.target.value)}
+                  className="w-full bg-black border border-white/20 rounded-none px-4 py-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors"
+                />
+              </div>
+
+              {/* Callback Time Preferences */}
+              <div className="pt-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300 mb-2">
+                  Best time for a quick 10-minute callback (Optional)
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {CALLBACK_TIMES.map((timeOption) => (
+                    <button
+                      key={timeOption}
+                      type="button"
+                      onClick={() => setSelectedCallbackTime(timeOption)}
+                      className={`py-2 px-3 rounded-none border text-left text-xs font-medium transition-colors cursor-pointer ${
+                        selectedCallbackTime === timeOption
+                          ? 'border-purple-500 bg-[#1e1b4b] text-white font-bold'
+                          : 'border-white/15 hover:border-white/30 text-zinc-400 bg-black'
+                      }`}
+                    >
+                      {timeOption}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3">
               <button
                 type="submit"
-                className="w-full py-4 rounded-full bg-purple-700 hover:bg-purple-600 text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-purple-950/50"
+                className="w-full py-4 rounded-none bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>Confirm 15-Minute Audit</span>
-                <ArrowRight className="w-4 h-4 text-purple-200" />
+                <span>Request Fixed Quote &amp; Callback</span>
+                <ArrowRight className="w-4 h-4 text-white" />
               </button>
-              <p className="text-[11px] text-zinc-500 text-center mt-2">
-                Jordan or Josh will call you on the selected time. No hard sell, guaranteed.
+              <p className="text-[12px] text-zinc-400 text-center mt-3 font-medium">
+                Direct 1-on-1 with Jordan &amp; Josh &bull; Fixed upfront price &bull; Zero sales pressure
               </p>
             </div>
           </form>

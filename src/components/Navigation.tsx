@@ -1,139 +1,162 @@
 import React, { useState } from 'react';
-import { Phone, ArrowRight, Menu, X, Calendar } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
-interface NavigationProps {
-  onOpenScheduleAudit: () => void;
-  onOpenFAQ: () => void;
+export interface NavigationProps {
+  onOpenScheduleAudit?: () => void;
+  onOpenConsultation?: () => void;
+  onOpenFAQ?: () => void;
   currentPage?: 'home' | 'packages';
+  currentView?: 'home' | 'packages';
   onNavigatePage?: (page: 'home' | 'packages') => void;
+  onNavigatePackages?: () => void;
+  onNavigateHome?: () => void;
 }
 
 export const Navigation: React.FC<NavigationProps> = ({
   onOpenScheduleAudit,
+  onOpenConsultation,
   onOpenFAQ,
   currentPage = 'home',
+  currentView,
   onNavigatePage,
+  onNavigatePackages,
+  onNavigateHome,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const activePage = currentView || currentPage;
 
-  const handleNavClick = (targetId?: string, isFaq?: boolean, pageTarget?: 'home' | 'packages') => {
+  const handleOpenQuote = () => {
+    if (onOpenConsultation) {
+      onOpenConsultation();
+    } else if (onOpenScheduleAudit) {
+      onOpenScheduleAudit();
+    } else {
+      const el = document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const goToPackages = () => {
     setMobileMenuOpen(false);
+    if (onNavigatePackages) {
+      onNavigatePackages();
+    } else if (onNavigatePage) {
+      onNavigatePage('packages');
+    }
+  };
 
-    if (pageTarget) {
-      if (onNavigatePage) {
-        onNavigatePage(pageTarget);
-      }
+  const goToHome = () => {
+    setMobileMenuOpen(false);
+    if (onNavigateHome) {
+      onNavigateHome();
+    } else if (onNavigatePage) {
+      onNavigatePage('home');
+    }
+  };
+
+  const handleAnchorClick = (id: string) => {
+    setMobileMenuOpen(false);
+    if (activePage !== 'home') {
+      goToHome();
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 120);
       return;
     }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-    if (isFaq) {
+  const handleFaqClick = () => {
+    setMobileMenuOpen(false);
+    const faqEl = document.getElementById('faq');
+    if (faqEl) {
+      handleAnchorClick('faq');
+    } else if (onOpenFAQ) {
       onOpenFAQ();
-      return;
-    }
-
-    if (targetId) {
-      if (currentPage !== 'home' && onNavigatePage) {
-        onNavigatePage('home');
-        setTimeout(() => {
-          const el = document.getElementById(targetId);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-        return;
-      }
-
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+    } else {
+      handleAnchorClick('faq');
     }
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/80 shadow-md transition-all">
+    <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/15 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Simplified Logo Lockup: Just transparent icon and JSOS */}
+        {/* Brand Lockup */}
         <button
-          onClick={() => handleNavClick(undefined, false, 'home')}
-          className="flex items-center gap-2.5 group focus-visible:outline-2 focus-visible:outline-purple-500 rounded-lg py-1 cursor-pointer bg-transparent border-0 text-left"
+          onClick={goToHome}
+          className="flex items-center group cursor-pointer bg-transparent border-0 text-left focus:outline-none py-1"
           title="JSOS Home"
         >
-          {/* Transparent icon, no border */}
-          <div className="flex items-center tracking-tight font-black text-lg transition-transform group-hover:scale-105 select-none">
-            <span className="text-purple-400">JS</span>
-            <span className="text-white">OS</span>
-          </div>
+          <img
+            src="/images/logo.svg"
+            alt="JS Solutions"
+            className="h-16 sm:h-20 w-auto max-w-[260px] sm:max-w-[320px] object-contain transition-transform duration-200 group-hover:scale-105"
+          />
         </button>
 
-        {/* Center: Navigation Links (Solutions, Packages, Our Work, FAQ, Contact) */}
-        <nav className="hidden lg:flex items-center gap-8 text-base font-semibold text-zinc-200">
-          <button
-            onClick={() => handleNavClick('solutions')}
-            className="hover:text-purple-400 transition-colors cursor-pointer py-1"
-          >
-            Solutions
-          </button>
-          <button
-            onClick={() => handleNavClick(undefined, false, 'packages')}
-            className={`transition-colors cursor-pointer py-1 ${
-              currentPage === 'packages' ? 'text-purple-400 font-bold' : 'hover:text-purple-400'
-            }`}
-          >
-            Packages
-          </button>
-          <button
-            onClick={() => handleNavClick('work')}
-            className="hover:text-purple-400 transition-colors cursor-pointer py-1"
-          >
-            Our Work
-          </button>
-          <button
-            onClick={() => handleNavClick(undefined, true)}
-            className="hover:text-purple-400 transition-colors cursor-pointer py-1"
-          >
-            FAQ
-          </button>
-          <button
-            onClick={() => handleNavClick('contact')}
-            className="hover:text-purple-400 transition-colors cursor-pointer py-1"
-          >
-            Contact
-          </button>
-        </nav>
-
-        {/* Top Right: Phone number & De-emphasized Ghost CTA */}
-        <div className="hidden sm:flex items-center gap-3.5">
+        {/* Center / Desktop Links */}
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
           <a
-            href="tel:07983145311"
-            className="flex items-center gap-2 text-sm sm:text-base font-bold text-zinc-200 hover:text-white px-4 py-2 rounded-full border border-zinc-800 hover:border-zinc-700 bg-zinc-900/80 hover:bg-zinc-800/80 transition-all tracking-wide shadow-xs"
-            aria-label="Call 07983 145311"
+            href="#work"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAnchorClick('work');
+            }}
+            className="text-zinc-200 hover:text-white transition-colors cursor-pointer py-1"
           >
-            <Phone className="w-4 h-4 text-purple-400" />
-            <span>07983 145311</span>
+            Proven Work
           </a>
 
-          {/* Ghost button (transparent background with purple border) */}
           <button
-            onClick={onOpenScheduleAudit}
-            className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase px-5 py-2.5 rounded-full bg-transparent text-purple-300 border border-purple-500/60 hover:bg-purple-950/40 hover:text-white hover:border-purple-400 transition-all cursor-pointer"
+            onClick={goToPackages}
+            className={`transition-colors cursor-pointer py-1 ${
+              activePage === 'packages'
+                ? 'text-white font-bold border-b-2 border-purple-500'
+                : 'text-zinc-200 hover:text-white'
+            }`}
           >
-            <Calendar className="w-3.5 h-3.5 text-purple-400" />
-            <span>Schedule Audit</span>
+            Fixed Pricing
+          </button>
+
+          <a
+            href="#faq"
+            onClick={(e) => {
+              e.preventDefault();
+              handleFaqClick();
+            }}
+            className="text-zinc-200 hover:text-white transition-colors cursor-pointer py-1"
+          >
+            Straight Answers
+          </a>
+        </nav>
+
+        {/* Desktop Primary CTA */}
+        <div className="hidden sm:flex items-center gap-4">
+          <a
+            href="tel:07983145311"
+            className="text-xs font-semibold tracking-wider text-zinc-300 hover:text-white transition-colors"
+          >
+            07983 145311
+          </a>
+
+          <button
+            onClick={handleOpenQuote}
+            className="rounded-none bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs uppercase tracking-wider px-5 py-2.5 transition-colors cursor-pointer border border-transparent hover:border-purple-400 focus:outline-none"
+          >
+            Get Fixed Price
           </button>
         </div>
 
         {/* Mobile menu button */}
         <div className="flex items-center gap-2 lg:hidden">
-          <a
-            href="tel:07983145311"
-            className="p-2 text-zinc-300 hover:text-white rounded-full border border-zinc-800 bg-zinc-900 sm:hidden"
-            aria-label="Call us"
-          >
-            <Phone className="w-4 h-4 text-purple-400" />
-          </a>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl text-zinc-300 hover:text-white hover:bg-zinc-900 transition-colors cursor-pointer"
+            className="p-2 text-zinc-200 hover:text-white rounded-none border border-white/15 bg-black cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -143,65 +166,56 @@ export const Navigation: React.FC<NavigationProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-zinc-800 bg-zinc-950 px-4 py-6 shadow-2xl animate-fadeIn space-y-4">
+        <div className="lg:hidden border-t border-white/15 bg-black px-6 py-6 space-y-4">
           <div className="flex flex-col gap-3 font-semibold text-zinc-200 text-base">
-            <button
-              onClick={() => handleNavClick(undefined, false, 'home')}
-              className="text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors"
+            <a
+              href="#work"
+              onClick={(e) => {
+                e.preventDefault();
+                handleAnchorClick('work');
+              }}
+              className="py-2 text-zinc-200 hover:text-white border-b border-white/10"
             >
-              Home
-            </button>
+              Proven Work
+            </a>
+
             <button
-              onClick={() => handleNavClick('solutions')}
-              className="text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors"
-            >
-              Solutions
-            </button>
-            <button
-              onClick={() => handleNavClick(undefined, false, 'packages')}
-              className={`text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors ${
-                currentPage === 'packages' ? 'text-purple-400 font-bold' : ''
+              onClick={goToPackages}
+              className={`text-left py-2 border-b border-white/10 ${
+                activePage === 'packages' ? 'text-white font-bold' : 'text-zinc-200 hover:text-white'
               }`}
             >
-              Packages &amp; Pricing
+              Fixed Pricing
             </button>
-            <button
-              onClick={() => handleNavClick('work')}
-              className="text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors"
+
+            <a
+              href="#faq"
+              onClick={(e) => {
+                e.preventDefault();
+                handleFaqClick();
+              }}
+              className="py-2 text-zinc-200 hover:text-white border-b border-white/10"
             >
-              Our Work
-            </button>
-            <button
-              onClick={() => handleNavClick(undefined, true)}
-              className="text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors"
-            >
-              FAQ
-            </button>
-            <button
-              onClick={() => handleNavClick('contact')}
-              className="text-left py-2 px-3 rounded-lg hover:bg-zinc-900 hover:text-purple-400 transition-colors"
-            >
-              Contact
-            </button>
+              Straight Answers
+            </a>
           </div>
 
-          <div className="pt-4 border-t border-zinc-800 flex flex-col gap-3">
+          <div className="pt-2 flex flex-col gap-3">
             <a
               href="tel:07983145311"
-              className="flex items-center justify-center gap-2 py-3 rounded-xl border border-zinc-800 font-bold text-sm text-zinc-200 bg-zinc-900"
+              className="text-xs font-semibold tracking-wider text-zinc-300 text-center py-2"
             >
-              <Phone className="w-4 h-4 text-purple-400" />
-              <span>07983 145311</span>
+              07983 145311
             </a>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenScheduleAudit();
+                handleOpenQuote();
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-transparent text-purple-300 border border-purple-500/60 font-bold text-xs uppercase tracking-wider"
+              className="w-full rounded-none bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs uppercase tracking-wider py-3 cursor-pointer text-center"
             >
-              <Calendar className="w-4 h-4 text-purple-400" />
-              <span>Schedule Audit</span>
+              Get Fixed Price
             </button>
           </div>
         </div>

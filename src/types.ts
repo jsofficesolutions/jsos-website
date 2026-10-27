@@ -38,4 +38,8 @@ export interface PortfolioProject {
   clientQuote: string;
   clientAuthor: string;
   accentColor: string;
+  url?: string;
+  imageSrc?: string;
 }
+
+export type CaseStudy = PortfolioProject;

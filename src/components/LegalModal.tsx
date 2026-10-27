@@ -10,15 +10,15 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
   if (!type) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
       <div
-        className="bg-zinc-900 rounded-3xl max-w-xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-zinc-800 relative p-6 sm:p-8 text-white"
+        className="bg-black rounded-none max-w-xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-white/15 relative p-6 sm:p-8 text-white"
         role="dialog"
         aria-modal="true"
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors cursor-pointer"
+          className="absolute top-5 right-5 p-2 rounded-none text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors cursor-pointer"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -62,10 +62,10 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose }) => {
           </div>
         )}
 
-        <div className="mt-6 pt-4 border-t border-zinc-800 text-right">
+        <div className="mt-6 pt-4 border-t border-white/15 text-right">
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-full bg-zinc-800 hover:bg-zinc-700 text-xs font-semibold text-white border border-zinc-700 cursor-pointer"
+            className="px-5 py-2 rounded-none bg-zinc-900 hover:bg-zinc-800 text-xs font-semibold uppercase tracking-wider text-white border border-white/20 cursor-pointer"
           >
             Close
           </button>
