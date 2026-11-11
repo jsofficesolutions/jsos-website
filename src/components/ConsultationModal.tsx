@@ -75,7 +75,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             Get Your Fixed-Price Quote
           </h3>
           <p className="text-zinc-300 text-xs sm:text-sm mt-2 leading-relaxed">
-            Deal directly with Jordan &amp; Josh. Tell us your trade and what you need—we’ll call or WhatsApp you back within 2 hours with a straight answer and a fixed price.
+            Deal directly with Jordan. Tell us your trade and what you need—we’ll call or WhatsApp you back within 2 hours with a straight answer and a fixed price.
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </div>
             <h4 className="text-2xl font-bold text-white">Quote Request Received!</h4>
             <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
-              Thanks <b>{name}</b>. Jordan or Josh will review your details for <b>{business || 'your business'}</b> and get back to you on <b>{phone}</b> within 2 hours.
+              Thanks <b>{name}</b>. Jordan will review your details for <b>{business || 'your business'}</b> and get back to you on <b>{phone}</b> within 2 hours.
             </p>
             <div className="pt-4">
               <button
@@ -204,7 +204,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                 <ArrowRight className="w-4 h-4 text-white" />
               </button>
               <p className="text-[12px] text-zinc-400 text-center mt-3 font-medium">
-                Direct 1-on-1 with Jordan &amp; Josh &bull; Fixed upfront price &bull; Zero sales pressure
+                Direct 1-on-1 with Jordan &bull; Fixed upfront price &bull; Zero sales pressure
               </p>
             </div>
           </form>

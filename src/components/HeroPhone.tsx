@@ -170,14 +170,13 @@ export const HeroPhone: React.FC = () => {
 
           {/* Fallback placeholder if video fails or is missing */}
           {!hasVideo && (
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-950 flex flex-col items-center justify-center text-center p-6 select-none z-0">
-              <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3 shadow-inner">
-                🎥
-              </div>
-              <span className="text-xs font-mono font-medium text-zinc-300">sb-floristry.mp4</span>
-              <span className="text-[10px] text-zinc-500 mt-1 max-w-[200px]">
-                Screen recording preview
-              </span>
+            <div className="absolute inset-0 z-0">
+              <img
+                src="/images/sbfloristry-desktop.webp"
+                alt="SB Floristry website preview"
+                className="w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/30" />
             </div>
           )}
         </div>

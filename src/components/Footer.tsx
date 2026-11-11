@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({
             </button>
 
             <p className="text-zinc-300 text-sm sm:text-base leading-relaxed max-w-sm">
-              Fast, mobile-first websites built for London &amp; Essex trades and service businesses. You deal directly with Jordan &amp; Josh—fixed upfront prices, zero tech headaches, and 100% ownership.
+              Fast, mobile-first websites built for London &amp; Essex trades and service businesses. You deal directly with Jordan—fixed upfront prices, zero tech headaches, and 100% ownership.
             </p>
 
             <div className="space-y-3 pt-2 text-sm">
@@ -176,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({
 
             <div className="pt-2">
               <span className="text-xs text-zinc-300 block">
-                Direct 1-on-1 with Jordan &amp; Josh &bull; 50/50 payment split &bull; 100% yours once paid
+                Direct 1-on-1 with Jordan &bull; 50/50 payment split &bull; 100% yours once paid
               </span>
             </div>
           </div>

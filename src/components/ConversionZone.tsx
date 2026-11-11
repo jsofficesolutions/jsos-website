@@ -80,7 +80,7 @@ export const ConversionZone: React.FC<ConversionZoneProps> = ({
                   Speak directly with the developers
                 </h3>
                 <p className="text-zinc-300 text-sm sm:text-base leading-relaxed mb-6">
-                  Jordan or Josh review every request personally and respond within 2 business hours with a fixed quote and delivery timeline.
+                  Jordan reviews every request personally and responds within 2 business hours with a fixed quote and delivery timeline.
                 </p>
 
                 {/* Direct Contact Info */}
@@ -152,11 +152,11 @@ export const ConversionZone: React.FC<ConversionZoneProps> = ({
                   </div>
                   <h3 className="text-2xl font-black text-white">Quote Request Received!</h3>
                   <p className="text-zinc-300 text-sm max-w-md mx-auto leading-relaxed">
-                    Thank you, <b>{formData.name}</b>. Jordan or Josh has received your project details for the <b>{formData.serviceTier}</b> and will review your requirements and respond within 2 hours.
+                    Thank you, <b>{formData.name}</b>. Jordan has received your project details for the <b>{formData.serviceTier}</b> and will review your requirements and respond within 2 hours.
                   </p>
                   <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
                     <a
-                      href={`https://wa.me/447983145311?text=Hi%20Jordan%20and%20Josh,%20I%20just%20submitted%20a%20project%20quote%20request%20for%20${encodeURIComponent(
+                      href={`https://wa.me/447983145311?text=Hi%20Jordan,%20I%20just%20submitted%20a%20project%20quote%20request%20for%20${encodeURIComponent(
                         formData.name
                       )}%20(${encodeURIComponent(formData.serviceTier || '')})`}
                       target="_blank"
@@ -164,7 +164,7 @@ export const ConversionZone: React.FC<ConversionZoneProps> = ({
                       className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md"
                     >
                       <WhatsAppIcon className="w-4 h-4" />
-                      <span>Ping Jordan &amp; Josh on WhatsApp Now</span>
+                      <span>Ping Jordan on WhatsApp Now</span>
                     </a>
                     <button
                       onClick={() => {
@@ -313,7 +313,7 @@ export const ConversionZone: React.FC<ConversionZoneProps> = ({
                   </div>
 
                   <p className="text-[11px] text-zinc-400 text-center sm:text-left mt-2">
-                    🔒 100% confidential. No telemarketers or third-party sharing. Fixed price quote returned directly by Jordan or Josh.
+                    🔒 100% confidential. No telemarketers or third-party sharing. Fixed price quote returned directly by Jordan.
                   </p>
                 </form>
               )}

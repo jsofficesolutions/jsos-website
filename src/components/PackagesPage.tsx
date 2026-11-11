@@ -163,7 +163,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
         'Dedicated "Areas We Cover" section to win local work',
         'Photo gallery showcasing your past jobs and reviews',
         'Take customer deposits, card payments or bookings',
-        'Work directly 1-on-1 with Jordan & Josh (no middlemen)',
+        'Work directly 1-on-1 with Jordan (no middlemen)',
       ],
       extraFeatures: [
         'Loads instantly with 100/100 speed test scores',
@@ -202,7 +202,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
     },
     {
       q: 'How fast will our website be designed, built and live?',
-      a: 'Single-page sites are live in 5–7 days, Multi-Page in 7–10 days, and Custom Suites in 10–14 days. You deal directly with Jordan & Josh from start to finish.',
+      a: 'Single-page sites are live in 5–7 days, Multi-Page in 7–10 days, and Custom Suites in 10–14 days. You deal directly with Jordan from start to finish.',
     },
     {
       q: 'Do I own 100% of the website, code, and content?',
@@ -652,7 +652,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                       <td className="py-3.5 px-4 sm:px-6 text-center text-purple-400 font-bold">✓ Included + Onboarding</td>
                     </tr>
                     <tr className="hover:bg-zinc-900/60 transition-colors">
-                      <td className="py-3.5 px-4 sm:px-6 font-medium text-white">Direct 1-on-1 Developer Access (Jordan &amp; Josh)</td>
+                      <td className="py-3.5 px-4 sm:px-6 font-medium text-white">Direct 1-on-1 Developer Access (Jordan)</td>
                       <td className="py-3.5 px-4 sm:px-6 text-center text-purple-400 font-bold">✓ Included</td>
                       <td className="py-3.5 px-4 sm:px-6 text-center text-purple-300 font-bold bg-purple-950/20">✓ Included</td>
                       <td className="py-3.5 px-4 sm:px-6 text-center text-purple-400 font-bold">✓ Priority Weekly Calls</td>
@@ -873,7 +873,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                       {expandedFeatures[planId] && (
                         <div className="pt-3 space-y-3 border-t border-white/10 mt-3 animate-fadeIn">
                           {[
-                            'Priority same-day responses directly from Jordan & Josh',
+                            'Priority same-day responses directly from Jordan',
                             'Monthly review to ensure you stay ahead of local competitors',
                             'Zero hourly change fees or surprise charges',
                           ].map((feat, idx) => (
@@ -1129,7 +1129,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
               Get Your Instant Quote
             </h2>
             <p className="mt-3 text-zinc-300 text-base leading-relaxed">
-              We've pre-filled your selections below. Send them directly to Jordan &amp; Josh to check availability and lock in your build date.
+              We've pre-filled your selections below. Send them directly to Jordan to check availability and lock in your build date.
             </p>
           </div>
 
@@ -1170,7 +1170,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">Quote Request Sent!</h3>
                 <p className="text-zinc-300 text-sm sm:text-base max-w-md mx-auto mb-6">
-                  Jordan &amp; Josh have received your specifications and will review and reply within a couple of hours.
+                  Jordan has received your specifications and will review and reply within a couple of hours.
                 </p>
                 <button
                   onClick={() => setIsFormSubmitted(false)}
@@ -1263,7 +1263,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                 {/* WhatsApp Alternative */}
                 {(() => {
                   const waText = encodeURIComponent(
-                    `Hi Jordan & Josh, I've configured a website quote on your packages page!\n\n` +
+                    `Hi Jordan, I've configured a website quote on your packages page!\n\n` +
                     `• Package: ${selectedPackage} (£${packagePrice})\n` +
                     `• Care: ${selectedCare}\n` +
                     (selectedBoltOns.length > 0 ? `• Bolt-Ons: ${selectedBoltOns.join(', ')}\n` : '') +
@@ -1290,7 +1290,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
                 })()}
 
                 <p className="text-center text-[11px] text-zinc-500 pt-3 border-t border-white/10">
-                  Zero spam • Direct reply from Jordan &amp; Josh • 100% fixed pricing guarantee
+                  Zero spam • Direct reply from Jordan • 100% fixed pricing guarantee
                 </p>
               </form>
             )}
@@ -1345,7 +1345,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
 
           <div className="mt-12 text-center p-6 rounded-none bg-[#0a0a0a] border border-white/15">
             <p className="text-sm sm:text-base text-zinc-300">
-              Have a bespoke question? Call Jordan &amp; Josh directly on{' '}
+              Have a bespoke question? Call Jordan directly on{' '}
               <a href="tel:07983145311" className="text-white font-bold hover:text-purple-300 underline underline-offset-4">
                 07983 145311
               </a>{' '}
@@ -1374,7 +1374,7 @@ export const PackagesPage: React.FC<PackagesPageProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
             <a
-              href="https://wa.me/447983145311?text=Hi%20Jordan%20%26%20Josh,%20I'd%20like%20to%20discuss%20a%20website%20package"
+              href="https://wa.me/447983145311?text=Hi%20Jordan,%20I'd%20like%20to%20discuss%20a%20website%20package"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-7 py-3.5 rounded-none bg-black hover:bg-zinc-900 text-white border border-white/20 hover:border-white/30 font-semibold text-xs uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-center gap-2"

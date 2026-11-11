@@ -174,20 +174,31 @@ export default function App() {
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                       <button
                         onClick={navigateToPackages}
-                        className="rounded-none bg-purple-600 hover:bg-purple-500 text-white font-semibold text-base px-7 py-3.5 transition-colors text-center cursor-pointer"
+                        className="rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-base px-7 py-3.5 transition-colors text-center cursor-pointer shadow-lg shadow-purple-900/20"
                       >
                         See Fixed-Price Packages
                       </button>
 
                       <a
-                        href="https://wa.me/447983145311?text=Hi%20Jordan%20%26%20Josh%2C%20I%27m%20interested%20in%20a%20fixed-price%20website."
+                        href="https://wa.me/447983145311?text=Hi%20Jordan%2C%20I%27m%20interested%20in%20a%20fixed-price%20website."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-none bg-[#0a0a0a] hover:bg-zinc-900 border border-white/20 text-white font-semibold text-base px-7 py-3.5 transition-colors flex items-center justify-center gap-2.5 text-center"
+                        className="rounded-lg bg-[#0a0a0a] hover:bg-zinc-900 border border-white/20 text-white font-semibold text-base px-7 py-3.5 transition-colors flex items-center justify-center gap-2.5 text-center"
                       >
                         <WhatsAppIcon className="w-5 h-5 text-emerald-400" />
-                        <span>WhatsApp Jordan &amp; Josh</span>
+                        <span>WhatsApp Jordan</span>
                       </a>
+                    </div>
+
+                    {/* Micro-Trust Strip */}
+                    <div className="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm text-zinc-400">
+                      <span className="flex items-center gap-1.5 text-amber-400 font-medium">
+                        ★★★★★ <span className="text-zinc-300">5.0 Star Rated</span>
+                      </span>
+                      <span className="text-zinc-600">&bull;</span>
+                      <span className="text-zinc-300">100/100 Mobile Speed</span>
+                      <span className="text-zinc-600">&bull;</span>
+                      <span className="text-zinc-300">Zero Monthly Lock-in</span>
                     </div>
                   </div>
 
@@ -200,7 +211,83 @@ export default function App() {
               </div>
             </section>
 
-            {/* 2. PROOF / PORTFOLIO SECTION */}
+            {/* 2. THE 3-STEP PROCESS SECTION */}
+            <section className="bg-[#0a0a0a] py-20 md:py-28 border-b border-white/15">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="mb-14">
+                  <div className="text-xs uppercase font-bold tracking-wider text-purple-400 mb-2">
+                    THE ZERO-HEADACHE JOURNEY
+                  </div>
+                  <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white mb-4">
+                    From First Chat to Live Site in 7 Days.
+                  </h2>
+                  <p className="text-lg text-zinc-300 max-w-2xl">
+                    You don't need to write website text or sit through long meetings. We do the heavy lifting while you stay on the tools.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  {/* Step 1 */}
+                  <div className="bg-black border border-white/15 p-8 flex flex-col justify-between">
+                    <div>
+                      <div className="text-xs uppercase font-bold tracking-wider text-purple-400 mb-3">
+                        STEP 01 &bull; 15-MINUTE BRIEF
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        Tell Us Your Services
+                      </h3>
+                      <p className="text-zinc-300 text-sm leading-relaxed mb-6">
+                        Send over your rough job photos and send a quick WhatsApp voice note or brief call detailing your services and target towns.
+                      </p>
+                    </div>
+                    <div className="text-xs font-semibold text-zinc-400 border-t border-white/10 pt-4 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-purple-500" />
+                      <span>50% deposit to lock in build slot</span>
+                    </div>
+                  </div>
+
+                  {/* Step 2 */}
+                  <div className="bg-black border border-white/15 p-8 flex flex-col justify-between">
+                    <div>
+                      <div className="text-xs uppercase font-bold tracking-wider text-purple-400 mb-3">
+                        STEP 02 &bull; 7-DAY BUILD
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        We Write &amp; Hand-Code
+                      </h3>
+                      <p className="text-zinc-300 text-sm leading-relaxed mb-6">
+                        Jordan writes all your headlines, crafts service descriptions, integrates tap-to-call, and optimizes for Google Maps visibility.
+                      </p>
+                    </div>
+                    <div className="text-xs font-semibold text-zinc-400 border-t border-white/10 pt-4 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-purple-500" />
+                      <span>Zero tech work needed from you</span>
+                    </div>
+                  </div>
+
+                  {/* Step 3 */}
+                  <div className="bg-black border border-white/15 p-8 flex flex-col justify-between">
+                    <div>
+                      <div className="text-xs uppercase font-bold tracking-wider text-purple-400 mb-3">
+                        STEP 03 &bull; MOBILE APPROVAL
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">
+                        Test on Phone &amp; Launch
+                      </h3>
+                      <p className="text-zinc-300 text-sm leading-relaxed mb-6">
+                        Inspect the private staging link directly on your phone. You only pay the remaining 50% when you are 100% satisfied and ready to go live.
+                      </p>
+                    </div>
+                    <div className="text-xs font-semibold text-zinc-400 border-t border-white/10 pt-4 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      <span>Final 50% only on your sign-off</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 3. PROOF / PORTFOLIO SECTION */}
             <section id="work" className="bg-[#0a0a0a] py-24 md:py-32 border-b border-white/15">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-14">
@@ -537,7 +624,7 @@ export default function App() {
                       How much of my time does this take?
                     </h3>
                     <p className="text-zinc-200 text-sm sm:text-base leading-relaxed">
-                      About 20 minutes. Send us your rough job photos and a quick WhatsApp voice note or call explaining your services and target areas. Jordan &amp; Josh write all the text and build the entire site.
+                      About 20 minutes. Send us your rough job photos and a quick WhatsApp voice note or call explaining your services and target areas. Jordan writes all the text and builds the entire site.
                     </p>
                   </div>
 
@@ -578,22 +665,22 @@ export default function App() {
                   Ready for a Website That Actually Brings in Work?
                 </h2>
                 <p className="text-xl text-zinc-200 max-w-2xl mx-auto mb-10 leading-relaxed">
-                  Speak directly with Jordan &amp; Josh today. Tell us your trade and what you need—you’ll get a straight answer and a fixed price.
+                  Speak directly with Jordan today. Tell us your trade and what you need—you’ll get a straight answer and a fixed price.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <button
                     onClick={() => openQuoteWithPackage()}
-                    className="w-full sm:w-auto rounded-none bg-purple-600 hover:bg-purple-500 text-white font-semibold text-lg px-8 py-4 transition-colors cursor-pointer"
+                    className="w-full sm:w-auto rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-lg px-8 py-4 transition-colors cursor-pointer shadow-lg shadow-purple-900/30"
                   >
                     Get Your Fixed Quote
                   </button>
 
                   <a
-                    href="https://wa.me/447983145311?text=Hi%20Jordan%20%26%20Josh%2C%20I%27m%20interested%20in%20a%20fixed-price%20website."
+                    href="https://wa.me/447983145311?text=Hi%20Jordan%2C%20I%27m%20interested%20in%20a%20fixed-price%20website."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto rounded-none bg-black hover:bg-zinc-900 border border-white/20 text-white font-semibold text-lg px-8 py-4 transition-colors flex items-center justify-center gap-2.5"
+                    className="w-full sm:w-auto rounded-lg bg-black hover:bg-zinc-900 border border-white/20 text-white font-semibold text-lg px-8 py-4 transition-colors flex items-center justify-center gap-2.5"
                   >
                     <WhatsAppIcon className="w-5 h-5 text-emerald-400" />
                     <span>WhatsApp 07983 145311</span>
